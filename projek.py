@@ -1,5 +1,5 @@
 import sys
-import math
+import time
 from random import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -9,11 +9,14 @@ l, t = 1300,650
 pos_kotak_awal_x = 0
 pos_kotak_awal_y = 0
 r,g,b = 232, 93, 4
-r1,g1,b1 = 0.0,0.0,0.2
+r2,g2,b2 = 232, 93, 4
+bg_r1,bg_g1,bg_b1 = 0.0,0.0,0.2
 l_kotak, t_kotak = 1300,650
+mulai = 0
+usap_mulai = t + 800
 
 def init():
-    glClearColor(r1,g1,b1,0.8)
+    glClearColor(bg_r1,bg_g1,bg_b1,0.8)
     gluOrtho2D(-l,l,-t,t)
 
 def latar_belakang():
@@ -25,36 +28,194 @@ def latar_belakang():
     glVertex2f(0,-t)
     glEnd()
 
-def kotak():
+def kotak_mulai():
     global r,g,b
     global pos_kotak_awal_x, pos_kotak_awal_y
+
     glColor3ub(r,g,b)
     glBegin(GL_POLYGON)
-
-    glVertex2f(-250+pos_kotak_awal_x,-250+pos_kotak_awal_y)
-    glVertex2f(250+pos_kotak_awal_x,-250+pos_kotak_awal_y)
-    glVertex2f(250+pos_kotak_awal_x,-50+pos_kotak_awal_y)
-    glVertex2f(-250+pos_kotak_awal_x,-50+pos_kotak_awal_y)
-
+    glVertex2f(-250,-250)
+    glVertex2f(250,-250)
+    glVertex2f(250,-50)
+    glVertex2f(-250,-50)
     glEnd()
 
-def time_edit_kotak_awal(value):
-    global pos_kotak_awal_x, pos_kotak_awal_y
+    glColor3ub(255,255,255)
+    glBegin(GL_POLYGON)
+    glVertex2f(-30, -200)
+    glVertex2f(-30, -100)
+    glVertex2f(50, -150)
+    glEnd()
+
+def kotak_mulai_hover():
+    global r,g,b
+
+    glColor3ub(r,g,b)
+    glBegin(GL_POLYGON)
+    glVertex2f(-260,-240)
+    glVertex2f(-250,-250)
+    glVertex2f(250,-250)
+    glVertex2f(260,-240)
+    glVertex2f(260,-60)
+    glVertex2f(250,-50)
+    glVertex2f(-250,-50)
+    glVertex2f(-260,-60)
+    glEnd() 
+
+def kotak_keluar():
+    global r2,g2,b2
+
+    glColor3ub(r2,g2,b2)
+    glBegin(GL_POLYGON)
+    glVertex2f(-200,-300)
+    glVertex2f(-200,-425)
+    glVertex2f(200,-425)
+    glVertex2f(200,-300)
+    glEnd()
+
+def kotak_keluar_hover():
+    global r2,g2,b2
+
+    glColor3ub(r2,g2,b2)
+    glBegin(GL_POLYGON)
+    glVertex2f(-190,-290)
+    glVertex2f(-200,-300)
+    glVertex2f(-200,-425)
+    glVertex2f(-190,-435)
+    glVertex2f(200,-435)
+    glVertex2f(210,-425)
+    glVertex2f(210,-300)
+    glVertex2f(200,-290)
+    glEnd()
+
+def opening_mulai_usap(tambah_usap):
+    tambah_usap -= 100
+    return tambah_usap
+
+def bintang_bersalju():
+    glColor3ub(200,200,255)
+    glPointSize(2)
+    glBegin(GL_POINTS)
+    glVertex2f(-975,-1325)
+    glVertex2f(-1118,-528)
+    glVertex2f(-778,-479)
+    glVertex2f(-510,-186)
+    glVertex2f(-412,-265)
+    glVertex2f(-760,475)
+    glVertex2f(-326,547)
+    glVertex2f(-322,547)
+    glVertex2f(-614,52)
+    glVertex2f(-50,-400)
+    glVertex2f(-300,-550)
+    glVertex2f(123,-348)
+    glVertex2f(330,-389)
+    glVertex2f(127,578)
+    glVertex2f(166,400)
+    glVertex2f(222,70)
+    glVertex2f(380,502)
+    glVertex2f(80,-20)
+    glVertex2f(600,565)
+    glVertex2f(700,450)
+    glVertex2f(950,560)
+    glVertex2f(1170,280)
+    glVertex2f(-300,-42)
+    glVertex2f(450,0)
+    glVertex2f(520,-40)
+    glVertex2f(570,30)
+    glVertex2f(470,-70)
+    glVertex2f(410,-60)
+    glVertex2f(390,-10)
+    glVertex2f(360,-90)
+    glVertex2f(460,-130)
+    glVertex2f(510,-150)
+    glVertex2f(560,-180)
+    glVertex2f(540,-220)
+    glVertex2f(630,-80)
+    glVertex2f(660,-130)
+    glVertex2f(700,-1000)
+    glVertex2f(750,-90)
+    glEnd()
+
+def pintu_keluar():
+    glColor3ub(255,255,255)
+    glLineWidth(2)
+    glBegin(GL_LINES)
+    glVertex2f(0,-400)
+    glVertex2f(30,-400)
+    glVertex2f(30,-400)
+    glVertex2f(30,-325)
+    glVertex2f(30,-325)
+    glVertex2f(-25,-325)
+    glEnd()
+
+    glColor3ub(0,0,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(-25,-325)
+    glVertex2f(5,-330)
+    glVertex2f(5,-330)
+    glVertex2f(5,-410)
+    glVertex2f(5,-410)
+    glVertex2f(-25,-400)
+    glVertex2f(-25,-400)
+    glVertex2f(-25,-325)
+    glEnd()
+
+    glPointSize(3)
+    glColor3ub(255,255,255)
+    glBegin(GL_POINTS)
+    glVertex2f(-2,-365)
+    glEnd()
+
+def opening():
+    global usap_mulai
+    global l, t
+    
+    # dinding / slide permainan
+    glBegin(GL_QUADS)
+    glColor3ub(0,0,20)
+    glVertex2f(usap_mulai, -t)
+    glVertex2f(usap_mulai, t)
+    glColor3ub(0, 0, 200)
+    glVertex2f(l, l)
+    glVertex2f(l, -t)
+    glEnd()
+    
+    if usap_mulai > -l:
+        time.sleep(0.08)
+        proses = opening_mulai_usap(usap_mulai)
+        usap_mulai = proses
+    if usap_mulai <= -l:
+        bintang_bersalju()
+
+def time_edit_kotak_mulai(value):
     global r,g,b
 
     r,g,b = randint(0,255),randint(0,255),randint(0,255)
-    pos_kotak_awal_y -= 50
+    glutTimerFunc(100, time_edit_kotak_mulai, 0)
 
-    glutTimerFunc(100, time_edit_kotak_awal, 0)
- 
+def time_edit_kotak_keluar(value):
+    global r2,g2,b2
+
+    r2,g2,b2 = randint(0,255),randint(0,255),randint(0,255)
+    glutTimerFunc(100, time_edit_kotak_keluar, 0)
+
 def input_mouse(button, state,x,y):
     global r,g,b
-    global r1,g1,b1
-    global pos_kotak_awal_x, pos_kotak_awal_y
+    global r2,g2,b2
+    global mulai
 
-    if button == GLUT_LEFT and state == GLUT_DOWN:
-        time_edit_kotak_awal(0)
-        
+    if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN:
+        if ((550 <= x <= 750)) and ((475 <= y <= 536)):
+            time_edit_kotak_keluar(0)
+            mulai = 1
+
+    if button == GLUT_LEFT_BUTTON and state == GLUT_UP:
+        if ((525 <= x <= 774) and (350 <= y <= 452)):
+            mulai = 2
+            time_edit_kotak_mulai(0)
+        if ((550 <= x <= 750)) and ((475 <= y <= 536)):
+            glutLeaveMainLoop()
+
 def nama():
     #t
     glBegin(GL_QUADS)
@@ -929,6 +1090,8 @@ def astro():
     glEnd()
 
 def layar():
+    global mulai
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
     kumpulan_komet()
@@ -970,9 +1133,43 @@ def layar():
     astro()
     glPopMatrix()
 
-    glPushMatrix()
-    kotak()
-    glPopMatrix()
+    if mulai == 0:
+        glPushMatrix()
+        kotak_mulai()
+        glPopMatrix()
+
+        glPushMatrix()
+        kotak_keluar()
+        glPopMatrix()
+        
+        glPushMatrix()
+        pintu_keluar()
+        glPopMatrix()
+
+    if mulai >= 1:
+        if mulai == 1:
+            glPushMatrix()
+            kotak_mulai()
+            glPopMatrix()
+           
+            glPushMatrix()
+            kotak_keluar_hover()
+            glPopMatrix()
+           
+            glPushMatrix()
+            pintu_keluar()
+            glPopMatrix()
+
+        if mulai == 2:
+            glPushMatrix()
+            kotak_mulai_hover()
+            glPopMatrix()
+            
+            # opening / mulai permainan
+            glPushMatrix()
+            opening()
+            glPopMatrix()
+
     glutSwapBuffers()
 
 def main():
@@ -984,9 +1181,10 @@ def main():
     glutDisplayFunc(layar)
     glutIdleFunc(layar)
 
-    # glutMouseFunc(input_mouse)
+    glutMouseFunc(input_mouse)
 
     init()
     glutMainLoop()
 
-main()
+if __name__ == "__main__":
+    main()
