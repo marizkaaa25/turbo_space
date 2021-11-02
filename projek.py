@@ -1,4 +1,5 @@
 import sys
+import math
 import time
 from random import *
 from OpenGL.GL import *
@@ -12,8 +13,12 @@ r,g,b = 232, 93, 4
 r2,g2,b2 = 232, 93, 4
 bg_r1,bg_g1,bg_b1 = 0.0,0.0,0.2
 l_kotak, t_kotak = 1300,650
+usap_mulai = t - 1950
 mulai = 0
-usap_mulai = t + 800
+ubah_warna_awal = 0
+posisi_x_pesawat = 0
+posisi_y_pesawat = 0
+jeda_permainan = False
 
 def init():
     glClearColor(bg_r1,bg_g1,bg_b1,0.8)
@@ -40,13 +45,6 @@ def kotak_mulai():
     glVertex2f(-250,-50)
     glEnd()
 
-    glColor3ub(255,255,255)
-    glBegin(GL_POLYGON)
-    glVertex2f(-30, -200)
-    glVertex2f(-30, -100)
-    glVertex2f(50, -150)
-    glEnd()
-
 def kotak_mulai_hover():
     global r,g,b
 
@@ -61,6 +59,14 @@ def kotak_mulai_hover():
     glVertex2f(-250,-50)
     glVertex2f(-260,-60)
     glEnd() 
+
+def tombol_play():
+    glColor3ub(255,255,255)
+    glBegin(GL_POLYGON)
+    glVertex2f(-30, -200)
+    glVertex2f(-30, -100)
+    glVertex2f(50, -150)
+    glEnd()
 
 def kotak_keluar():
     global r2,g2,b2
@@ -92,51 +98,198 @@ def opening_mulai_usap(tambah_usap):
     tambah_usap -= 100
     return tambah_usap
 
-def bintang_bersalju():
-    glColor3ub(200,200,255)
-    glPointSize(2)
-    glBegin(GL_POINTS)
-    glVertex2f(-975,-1325)
-    glVertex2f(-1118,-528)
-    glVertex2f(-778,-479)
-    glVertex2f(-510,-186)
-    glVertex2f(-412,-265)
-    glVertex2f(-760,475)
-    glVertex2f(-326,547)
-    glVertex2f(-322,547)
-    glVertex2f(-614,52)
-    glVertex2f(-50,-400)
-    glVertex2f(-300,-550)
-    glVertex2f(123,-348)
-    glVertex2f(330,-389)
-    glVertex2f(127,578)
-    glVertex2f(166,400)
-    glVertex2f(222,70)
-    glVertex2f(380,502)
-    glVertex2f(80,-20)
-    glVertex2f(600,565)
-    glVertex2f(700,450)
-    glVertex2f(950,560)
-    glVertex2f(1170,280)
-    glVertex2f(-300,-42)
-    glVertex2f(450,0)
-    glVertex2f(520,-40)
-    glVertex2f(570,30)
-    glVertex2f(470,-70)
-    glVertex2f(410,-60)
-    glVertex2f(390,-10)
-    glVertex2f(360,-90)
-    glVertex2f(460,-130)
-    glVertex2f(510,-150)
-    glVertex2f(560,-180)
-    glVertex2f(540,-220)
-    glVertex2f(630,-80)
-    glVertex2f(660,-130)
-    glVertex2f(700,-1000)
-    glVertex2f(750,-90)
+def pesawat():
+    global posisi_x_pesawat, posisi_y_pesawat
+
+    # Daerah Pinggir Pesawat
+    glColor3ub(255,255,255)
+    glLineWidth(3)
+    glBegin(GL_LINES)
+    glVertex2f(0+posisi_x_pesawat,-275+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(-200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-0+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(-0+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(0+posisi_x_pesawat,-275+posisi_y_pesawat)
     glEnd()
 
-def pintu_keluar():
+    # Badan Pesawat
+    glColor3ub(200,0,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(0+posisi_x_pesawat,-275+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(-200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-0+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(-0+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(50+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(60+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(200+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-375+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(0+posisi_x_pesawat,-275+posisi_y_pesawat)
+    glEnd()
+
+    # Kepala Pesawat
+    glColor3ub(0,255,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(0+posisi_x_pesawat,-300+posisi_y_pesawat)
+    glVertex2f(-30+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-30+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-360+posisi_y_pesawat)
+    glColor3ub(0,0,255)
+    glVertex2f(-80+posisi_x_pesawat,-360+posisi_y_pesawat)
+    glVertex2f(-30+posisi_x_pesawat,-380+posisi_y_pesawat)
+    glVertex2f(-30+posisi_x_pesawat,-380+posisi_y_pesawat)
+    glColor3ub(255,0,0)
+    glVertex2f(0+posisi_x_pesawat,-430+posisi_y_pesawat)
+    glVertex2f(0+posisi_x_pesawat,-430+posisi_y_pesawat)
+    glVertex2f(30+posisi_x_pesawat,-380+posisi_y_pesawat)
+    glVertex2f(30+posisi_x_pesawat,-380+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-360+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-360+posisi_y_pesawat)
+    glVertex2f(30+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(30+posisi_x_pesawat,-350+posisi_y_pesawat)
+    glVertex2f(0+posisi_x_pesawat,-300+posisi_y_pesawat)
+    glEnd()
+
+    # Nitro / Nos Sisi Kiri
+    glColor3ub(255,100,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(-80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(-70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glColor3ub(255,0,0)
+    glVertex2f(-70+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(-100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glEnd()
+
+    # Nitro / Nos Sisi Kanan
+    glColor3ub(255,100,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glVertex2f(80+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glVertex2f(70+posisi_x_pesawat,-440+posisi_y_pesawat)
+    glColor3ub(255,0,0)
+    glVertex2f(70+posisi_x_pesawat,-470+posisi_y_pesawat)
+    glVertex2f(100+posisi_x_pesawat,-450+posisi_y_pesawat)
+    glEnd()
+
+def asteroid_1():
+    glColor3ub(151,151,151)
+    glBegin(GL_POLYGON)
+    glVertex2f(-1000,600)
+    glVertex2f(-1100,600)
+    glVertex2f(-1150,575)
+    glVertex2f(-1125,575)
+    glVertex2f(-1150,555)
+    glColor3ub(117,117,117)
+    glVertex2f(-1150,530)
+    glVertex2f(-1120,500)
+    glVertex2f(-1050,500)
+    glVertex2f(-1000,530)
+    glVertex2f(-990,570)
+    glVertex2f(-1000,600)
+    glEnd()
+
+    glColor3ub(102,102,102)
+    glBegin(GL_POLYGON)
+    glVertex2f(-1075,575)
+    glVertex2f(-1100,550)
+    glVertex2f(-1075,550)
+    glVertex2f(-1075,575)
+    glEnd()
+
+    glColor3ub(102,102,102)
+    glBegin(GL_POLYGON)
+    glVertex2f(-1030,575)
+    glVertex2f(-1050,525)
+    glVertex2f(-1010,560)
+    glVertex2f(-1030,575)
+    glEnd()
+
+def asteroid_2():
+    glColor3ub(117,117,117)
+    glBegin(GL_POLYGON)
+    glVertex2f(1000,575)
+    glVertex2f(965,540)
+    glVertex2f(1025,500)
+    glVertex2f(1060,500)
+    glColor3ub(151,151,151)
+    glVertex2f(1075,550)
+    glVertex2f(1070,590)
+    glVertex2f(1040,570)
+    glVertex2f(1040,600)
+    glVertex2f(1000,575)
+    glEnd()
+
+    glColor3ub(102,102,102)
+    glBegin(GL_POLYGON)
+    glVertex2f(1020,540)
+    glVertex2f(1050,540)
+    glVertex2f(1050,520)
+    glVertex2f(1020,540)
+    glEnd()
+
+def pintu_keluar_awal():
     glColor3ub(255,255,255)
     glLineWidth(2)
     glBegin(GL_LINES)
@@ -160,10 +313,38 @@ def pintu_keluar():
     glVertex2f(-25,-325)
     glEnd()
 
-    glPointSize(3)
     glColor3ub(255,255,255)
+    glPointSize(3)
     glBegin(GL_POINTS)
     glVertex2f(-2,-365)
+    glEnd()
+
+def pintu_keluar_pause():
+    glColor3ub(255,255,255)
+    glLineWidth(2)
+    glBegin(GL_LINES)
+    glVertex2f(300,-125)
+    glVertex2f(400,-125)
+    glVertex2f(400,-125)
+    glVertex2f(400,-250)
+    glVertex2f(400,-250)
+    glVertex2f(350,-250)
+    glEnd()
+
+    glColor3ub(0,0,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(300,-125)
+    glVertex2f(350,-130)
+    glVertex2f(350,-250)
+    glVertex2f(350,-275)
+    glVertex2f(300,-250)
+    glVertex2f(300,-125)
+    glEnd()
+
+    glColor3ub(255,255,255)
+    glPointSize(3)
+    glBegin(GL_POINTS)
+    glVertex2f(330,-190)
     glEnd()
 
 def opening():
@@ -180,12 +361,18 @@ def opening():
     glVertex2f(l, -t)
     glEnd()
     
-    if usap_mulai > -l:
-        time.sleep(0.08)
-        proses = opening_mulai_usap(usap_mulai)
-        usap_mulai = proses
+    # if usap_mulai > -l:
+    #     time.sleep(0.08)
+    #     proses = opening_mulai_usap(usap_mulai)
+    #     usap_mulai = proses
     if usap_mulai <= -l:
-        bintang_bersalju()
+        glPushMatrix()
+        bintang()
+        glPopMatrix()
+
+        glPushMatrix()
+        pesawat()
+        glPopMatrix()
 
 def time_edit_kotak_mulai(value):
     global r,g,b
@@ -205,16 +392,107 @@ def input_mouse(button, state,x,y):
     global mulai
 
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN:
-        if ((550 <= x <= 750)) and ((475 <= y <= 536)):
+        if ((525 <= x <= 774) and (350 <= y <= 452)):
+            time_edit_kotak_mulai(0) 
+        if ((550 <= x <= 750) and (475 <= y <= 536)):
             time_edit_kotak_keluar(0)
             mulai = 1
 
     if button == GLUT_LEFT_BUTTON and state == GLUT_UP:
         if ((525 <= x <= 774) and (350 <= y <= 452)):
-            mulai = 2
             time_edit_kotak_mulai(0)
-        if ((550 <= x <= 750)) and ((475 <= y <= 536)):
+            mulai = 2
+        if ((550 <= x <= 750) and (475 <= y <= 536)):
             glutLeaveMainLoop()
+
+def input_keyboard(key,x,y):
+    global posisi_x_pesawat, posisi_y_pesawat
+
+    if key == GLUT_KEY_UP:
+        posisi_y_pesawat += 20
+    if key == GLUT_KEY_DOWN:
+        posisi_y_pesawat -= 20
+    if key == GLUT_KEY_RIGHT:
+        posisi_x_pesawat += 20
+    if key == GLUT_KEY_LEFT:
+        posisi_x_pesawat -= 20            
+
+    if posisi_x_pesawat == -1120:
+        posisi_x_pesawat += 20
+    if posisi_x_pesawat == 1120:
+        posisi_x_pesawat -= 20
+    if posisi_y_pesawat == -200:
+        posisi_y_pesawat += 20
+    if posisi_y_pesawat == 940:
+        posisi_y_pesawat -= 20
+
+
+def tanda_pause():
+    glColor3ub(255,255,255)
+    glBegin(GL_POLYGON)
+    glVertex2f(-1275,600)
+    glVertex2f(-1260,600)
+    glVertex2f(-1260,550)
+    glVertex2f(-1275,550)
+    glEnd()
+    
+    glColor3ub(255,255,255)
+    glBegin(GL_POLYGON)
+    glVertex2f(-1250,600)
+    glVertex2f(-1235,600)
+    glVertex2f(-1235,550)
+    glVertex2f(-1250,550)
+    glEnd()
+
+def layar_pause():
+    glColor3ub(220,0,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(-800,400)
+    glVertex2f(800,400)
+    glVertex2f(800,-400)
+    glVertex2f(-800,-400)
+    glEnd()
+
+def pilihan_pause_1():
+    glColor3ub(200,200,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(-600,-50)
+    glVertex2f(-100,-50)
+    glVertex2f(-50, -75)
+    glVertex2f(-50, -300)
+    glVertex2f(-100,-325)
+    glVertex2f(-600,-325)
+    glVertex2f(-650,-300)
+    glVertex2f(-650,-75)
+    glVertex2f(-600,-50)
+    glEnd()
+
+def pilihan_pause_2():
+    glColor3ub(200,200,0)
+    glBegin(GL_POLYGON)
+    glVertex2f(600,-50)
+    glVertex2f(100,-50)
+    glVertex2f(50, -75)
+    glVertex2f(50, -300)
+    glVertex2f(100,-325)
+    glVertex2f(600,-325)
+    glVertex2f(650,-300)
+    glVertex2f(650,-75)
+    glVertex2f(600,-50)
+    glEnd()
+
+def tanda_kembali():
+    glColor3ub(255,255,255)
+    glBegin(GL_POLYGON)
+    glVertex2f(-425,-200)
+    glVertex2f(-350,-125)
+    glVertex2f(-350,-200)
+    glVertex2f(-275,-125)
+    glVertex2f(-275,-250)
+    glVertex2f(-350,-200)
+    glVertex2f(-350,-250)
+    glVertex2f(-425,-200)
+    glEnd()
 
 def nama():
     #t
@@ -1132,10 +1410,14 @@ def layar():
     glTranslated(500,-510,0)
     astro()
     glPopMatrix()
-
+    
     if mulai == 0:
         glPushMatrix()
         kotak_mulai()
+        glPopMatrix()
+        
+        glPushMatrix()
+        tombol_play()
         glPopMatrix()
 
         glPushMatrix()
@@ -1143,23 +1425,30 @@ def layar():
         glPopMatrix()
         
         glPushMatrix()
-        pintu_keluar()
+        pintu_keluar_awal()
         glPopMatrix()
 
-    if mulai >= 1:
+    if mulai > 0:
+
         if mulai == 1:
+
             glPushMatrix()
             kotak_mulai()
             glPopMatrix()
            
             glPushMatrix()
+            tombol_play()
+            glPopMatrix()
+
+            glPushMatrix()
             kotak_keluar_hover()
             glPopMatrix()
            
             glPushMatrix()
-            pintu_keluar()
+            pintu_keluar_awal()
             glPopMatrix()
 
+            
         if mulai == 2:
             glPushMatrix()
             kotak_mulai_hover()
@@ -1169,6 +1458,54 @@ def layar():
             glPushMatrix()
             opening()
             glPopMatrix()
+
+    ##################### BAGIAN PERMAINAN ####################     
+    glPushMatrix()
+    opening()
+    glPopMatrix()
+
+    glPushMatrix()
+    pesawat()
+    glPopMatrix()
+
+    glPushMatrix()
+    asteroid_1()
+    glPopMatrix()
+
+    glPushMatrix()
+    asteroid_2()
+    glPopMatrix()
+
+    ##################### BAGIAN PAUSE ########################
+
+    # glPushMatrix()
+    # opening()
+    # glPopMatrix()
+
+    # glPushMatrix()
+    # tanda_pause()
+    # glPopMatrix()
+    
+    # glPushMatrix()
+    # layar_pause()
+    # glPopMatrix()
+    
+    # glPushMatrix()
+    # pilihan_pause_1()
+    # glPopMatrix()
+
+    # glPushMatrix()
+    # tanda_kembali()
+    # glPopMatrix()
+
+    # glPushMatrix()
+    # pilihan_pause_2()
+    # glPopMatrix()
+    
+    # glPushMatrix()
+    # pintu_keluar_pause()
+    # glPopMatrix()
+    
 
     glutSwapBuffers()
 
@@ -1181,7 +1518,8 @@ def main():
     glutDisplayFunc(layar)
     glutIdleFunc(layar)
 
-    glutMouseFunc(input_mouse)
+    # glutSpecialFunc(input_keyboard)
+    # glutMouseFunc(input_mouse)
 
     init()
     glutMainLoop()
