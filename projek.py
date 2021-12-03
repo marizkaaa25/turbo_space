@@ -1,5 +1,4 @@
 import sys
-import math
 import time
 import random as rd
 from OpenGL.GL import *
@@ -23,6 +22,37 @@ posisi_x_pesawat = 0
 posisi_y_pesawat = 0
 pause = 0
 gerak_benda = 0
+## Area Pesawat
+# Sisi Kiri
+kiri_1, kiri_2, kiri_3, kiri_4, kiri_5, kiri_6 = -999999,-110,-200,-265,-365,-480
+# Sisi Kanan 
+kanan_1, kanan_2, kanan_3, kanan_4, kanan_5, kanan_6 = 999999,112,202,-265,-365,-480
+# Batas Pesawat
+tempat_pesawat_x1 = -110
+tempat_pesawat_x2 = 112
+tempat_pesawat_x3 = -200
+tempat_pesawat_x4 = 202
+tempat_pesawat_y1 = -265
+tempat_pesawat_y2 = -365
+tempat_pesawat_y3 = -480
+kotak_atas_x, kotak_atas_y = tempat_pesawat_x1 + posisi_x_pesawat,tempat_pesawat_y1 + posisi_y_pesawat
+kotak_bawah_x, kotak_bawah_y = tempat_pesawat_x3 + posisi_x_pesawat,tempat_pesawat_y2 + posisi_y_pesawat
+# Batas Asteroid 5
+tempat_asteroid5_x1 = -105
+tempat_asteroid5_x2 = 55
+tempat_asteroid5_y1 = 610
+tempat_asteroid5_y2 = 480
+kotak_1,kotak_2 = tempat_asteroid5_y1+gerak_benda,tempat_asteroid5_y2+gerak_benda
+kotak_3,kotak_4 = tempat_asteroid5_x1, tempat_asteroid5_x2
+# Kotak 1 -> Asteroid 5
+x_k1, w_k1 = tempat_asteroid5_x1, 160
+y_k1, h_k1 = kotak_1, -130
+# Kotak 2 -> Pesawat Bagian Atas
+x_k2, w_k2 = kotak_atas_x, 222
+y_k2, h_k2 = kotak_atas_y, -100
+# Kotak 3 -> Pesawat Bagian Bawah
+x_k3, w_k3 = kotak_bawah_x, 402
+y_k3, h_k3 = kotak_bawah_y, -115
 
 def init():
     glClearColor(bg_r1,bg_g1,bg_b1,0.8)
@@ -106,6 +136,13 @@ def pesawat():
     global posisi_x_pesawat, posisi_y_pesawat
     global tempat_pesawat_x1, tempat_pesawat_x2, tempat_pesawat_x3, tempat_pesawat_x4
     global tempat_pesawat_y1, tempat_pesawat_y2, tempat_pesawat_y3
+    global kotak_atas_x, kotak_atas_y
+    global kotak_bawah_x, kotak_bawah_y
+
+    kotak_atas_x = tempat_pesawat_x1 + posisi_x_pesawat
+    kotak_atas_y = tempat_pesawat_y1 + posisi_y_pesawat
+    kotak_bawah_x = tempat_pesawat_x3 + posisi_x_pesawat
+    kotak_bawah_y = tempat_pesawat_y2 + posisi_y_pesawat
 
     # Daerah Pinggir Pesawat
     glColor3ub(255,255,255)
@@ -226,7 +263,7 @@ def efek_turun():
     if gerak_benda <= -1500:
         gerak_benda = 0
     else:
-        gerak_benda -= 0.5
+        gerak_benda -= 1
 
 def animasi_turun():
     # data = [asteroid_1, asteroid_2,asteroid_3,asteroid_4,asteroid_5,asteroid_6,asteroid_7,asteroid_8,serpihan_1]
@@ -407,9 +444,28 @@ def asteroid_4():
 
 def asteroid_5():
     global pause
+    global tempat_pesawat_x1, tempat_pesawat_x2
+    global tempat_pesawat_y1, tempat_pesawat_y2
+    global tempat_asteroid5_x1, tempat_asteroid5_x2
+    global tempat_asteroid5_y1, tempat_asteroid5_y2
+    global kotak_1, kotak_2, kotak_3, kotak_4
     
+    kotak_1 = tempat_asteroid5_y1+gerak_benda
+    kotak_2 = tempat_asteroid5_y2+gerak_benda
     if pause != 1:
         efek_turun() 
+
+    glColor3f(255,255,255)
+    glBegin(GL_LINES)
+    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y1+gerak_benda)
+    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y2+gerak_benda)
+    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y2+gerak_benda)
+    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y2+gerak_benda)
+    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y2+gerak_benda)
+    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y1+gerak_benda)
+    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y1+gerak_benda)
+    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y1+gerak_benda)
+    glEnd()
 
     glColor3ub(243, 91, 4)
     glBegin(GL_POLYGON)
@@ -466,6 +522,8 @@ def asteroid_5():
     glVertex2f(30,560+gerak_benda)
     glVertex2f(40,570+gerak_benda)
     glEnd()
+    
+    tabrakan()
 
 def asteroid_6():
     global gerak_benda
@@ -836,6 +894,20 @@ def input_keyboard(key,x,y):
             posisi_y_pesawat += 20
         if posisi_y_pesawat == 940:
             posisi_y_pesawat -= 20
+
+def tabrakan():
+           # -1300, -110, -200, -265, -365, -480
+    global kiri_1, kiri_2, kiri_3, kiri_4, kiri_5, kiri_6
+           # 1300, 112, 202, -265, -365, -480
+    global kanan_1, kanan_2, kanan_3, kanan_4, kanan_5, kanan_6
+    global gerak_benda, kotak_1, kotak_2, kotak_3, kotak_4
+    global posisi_x_pesawat, posisi_y_pesawat
+
+    # Area Bagian Pesawat
+    if (kiri_4 + posisi_y_pesawat > kotak_2 and kiri_6 + posisi_y_pesawat < kotak_2) and \
+        (kiri_3 + posisi_x_pesawat <= kotak_4 and kanan_3 + posisi_x_pesawat >= kotak_4):
+        # print(f"DAERAH SAYAP {kotak_2}")
+        gerak_benda += 1
 
 def tanda_pause():
     glColor3ub(255,255,255)
@@ -1838,6 +1910,52 @@ def astro():
     glVertex2f(63,95)
     glEnd()
 
+def sayap():
+           # -999999, -110, -200, -265, -365, -480
+    global kiri_1, kiri_2, kiri_3, kiri_4, kiri_5, kiri_6
+           # 999999, 112, 202, -265, -365, -480
+    global kanan_1, kanan_2, kanan_3, kanan_4, kanan_5, kanan_6
+    global posisi_x_pesawat, posisi_y_pesawat
+
+    # Sisi Kiri 
+    glColor3ub(255,255,255)
+    glBegin(GL_LINES)
+    glVertex2f(kiri_3+posisi_x_pesawat,kiri_4+posisi_y_pesawat)
+    glVertex2f(kiri_3+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
+    glVertex2f(kiri_1+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
+    glVertex2f(kiri_1+posisi_x_pesawat,kiri_4+posisi_y_pesawat)
+    glEnd()
+
+    # Sisi Kanan 
+    glColor3ub(255,255,255)
+    glBegin(GL_LINES)
+    glVertex2f(kanan_3+posisi_x_pesawat,kanan_4+posisi_y_pesawat)
+    glVertex2f(kanan_3+posisi_x_pesawat,kanan_6+posisi_y_pesawat)
+    glVertex2f(kanan_1+posisi_x_pesawat, kanan_6+posisi_y_pesawat)
+    glVertex2f(kanan_1+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
+    glEnd()
+
+    # Sisi Atas
+    glColor3ub(255,255,255)
+    glBegin(GL_LINES)
+    glVertex2f(kiri_3+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
+    glVertex2f(kiri_3+posisi_x_pesawat, kanan_1+posisi_y_pesawat)
+    glVertex2f(kanan_3+posisi_x_pesawat, kanan_1+posisi_y_pesawat)
+    glVertex2f(kanan_3+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
+    glEnd()
+
+    # Sisi Bawah
+    glColor3ub(255,255,255)
+    glBegin(GL_LINES)
+    glVertex2f(kiri_3+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
+    glVertex2f(kiri_3+posisi_x_pesawat,kiri_1+posisi_y_pesawat)
+    glVertex2f(abs(kiri_3)+posisi_x_pesawat,kiri_1+posisi_y_pesawat)
+    glVertex2f(abs(kiri_3)+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
+    glEnd()
+
+def nyawa():
+    print("DISINI BROO")
+
 def layar():
     global pause
     global mulai
@@ -1950,8 +2068,16 @@ def layar():
     glPushMatrix()
     tanda_pause()
     glPopMatrix()
+    
+    glPushMatrix()
+    sayap()
+    glPopMatrix()
 
-    animasi_turun()
+    # glPushMatrix()
+    # sayap()
+    # glPopMatrix()
+
+    # animasi_turun()
 
     # glPushMatrix()
     # asteroid_1()
@@ -1993,9 +2119,9 @@ def layar():
     # glPushMatrix()
     # opening()
     # glPopMatrix()
-    if pause == 1:
-        tombol_awal_efek = False
-        pausing()
+    # if pause == 1:
+    #     tombol_awal_efek = False
+    #     pausing()
     # pause = 1
     # pausing()
 
@@ -2011,7 +2137,7 @@ def main():
     glutIdleFunc(layar)
 
     glutSpecialFunc(input_keyboard)
-    glutMouseFunc(input_mouse)
+    # glutMouseFunc(input_mouse)
 
     init()
     glutMainLoop()
