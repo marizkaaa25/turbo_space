@@ -37,22 +37,72 @@ tempat_pesawat_y2 = -365
 tempat_pesawat_y3 = -480
 kotak_atas_x, kotak_atas_y = tempat_pesawat_x1 + posisi_x_pesawat,tempat_pesawat_y1 + posisi_y_pesawat
 kotak_bawah_x, kotak_bawah_y = tempat_pesawat_x3 + posisi_x_pesawat,tempat_pesawat_y2 + posisi_y_pesawat
+## Asteroid
+# Batas Asteroid 1
+tempat_asteroid1_x1 = -1160 # Kiri
+tempat_asteroid1_x2 = -985 # Kanan
+tempat_asteroid1_y1 = 605 # Atas
+tempat_asteroid1_y2 = 490 # Bawah
+kotak_ast1_1,kotak_ast1_2 = tempat_asteroid1_y1+gerak_benda, tempat_asteroid1_y2+gerak_benda
+kotak_ast1_3,kotak_ast1_4 = tempat_asteroid1_x1, tempat_asteroid1_x2
+# Batas Asteroid 2
+tempat_asteroid2_x1 = 960 # Kiri
+tempat_asteroid2_x2 = 1080 # Kanan
+tempat_asteroid2_y1 = 610 # Atas
+tempat_asteroid2_y2 = 490 # Bawah
+kotak_ast2_1,kotak_ast2_2 = tempat_asteroid2_y1+gerak_benda,tempat_asteroid2_y2+gerak_benda
+kotak_ast2_3,kotak_ast2_4 = tempat_asteroid2_x1, tempat_asteroid2_x2
+# Batas Asteroid 3
+tempat_asteroid3_x1 = -900 # Kiri
+tempat_asteroid3_x2 = -750 # Kanan
+tempat_asteroid3_y1 = 605 # Atas
+tempat_asteroid3_y2 = 480 # Bawah
+kotak_ast3_1,kotak_ast3_2 = tempat_asteroid3_y1+gerak_benda, tempat_asteroid3_y2+gerak_benda
+kotak_ast3_3,kotak_ast3_4 = tempat_asteroid3_x1, tempat_asteroid3_x2
+# Batas Asteroid 4
+tempat_asteroid4_x1 = -660 # Kiri
+tempat_asteroid4_x2 = -498 # Kanan
+tempat_asteroid4_y1 = 600 # Atas
+tempat_asteroid4_y2 = 480 # Bawah
+kotak_ast4_1,kotak_ast4_2 = tempat_asteroid4_y1+gerak_benda, tempat_asteroid4_y2+gerak_benda
+kotak_ast4_3,kotak_ast4_4 = tempat_asteroid4_x1, tempat_asteroid4_x2
 # Batas Asteroid 5
-tempat_asteroid5_x1 = -105
-tempat_asteroid5_x2 = 55
-tempat_asteroid5_y1 = 610
-tempat_asteroid5_y2 = 480
-kotak_1,kotak_2 = tempat_asteroid5_y1+gerak_benda,tempat_asteroid5_y2+gerak_benda
-kotak_3,kotak_4 = tempat_asteroid5_x1, tempat_asteroid5_x2
-# Kotak 1 -> Asteroid 5
-x_k1, w_k1 = tempat_asteroid5_x1, 160
-y_k1, h_k1 = kotak_1, -130
-# Kotak 2 -> Pesawat Bagian Atas
-x_k2, w_k2 = kotak_atas_x, 222
-y_k2, h_k2 = kotak_atas_y, -100
-# Kotak 3 -> Pesawat Bagian Bawah
-x_k3, w_k3 = kotak_bawah_x, 402
-y_k3, h_k3 = kotak_bawah_y, -115
+tempat_asteroid5_x1 = -105 # Kiri
+tempat_asteroid5_x2 = 55 # Kanan
+tempat_asteroid5_y1 = 610 # Atas
+tempat_asteroid5_y2 = 480 # Bawah 
+kotak_ast5_1,kotak_ast5_2 = tempat_asteroid5_y1+gerak_benda,tempat_asteroid5_y2+gerak_benda
+kotak_ast5_3,kotak_ast5_4 = tempat_asteroid5_x1, tempat_asteroid5_x2
+# Batas Asteroid 6
+tempat_asteroid6_x1 = 150 # Kiri
+tempat_asteroid6_x2 = 360 # Kanan
+tempat_asteroid6_y1 = 605 # Atas
+tempat_asteroid6_y2 = 490 # Bawah
+kotak_ast6_1, kotak_ast6_2 = tempat_asteroid6_y1+gerak_benda, tempat_asteroid6_y2+gerak_benda
+kotak_ast6_3, kotak_ast6_4 = tempat_asteroid6_x1, tempat_asteroid6_x2
+# Batas Asteroid 7
+tempat_asteroid7_x1 = 450 # Kiri
+tempat_asteroid7_x2 = 605 # Kanan
+tempat_asteroid7_y1 = 600 # Atas
+tempat_asteroid7_y2 = 490 # Bawah
+kotak_ast7_1, kotak_ast7_2 = tempat_asteroid7_y1+gerak_benda, tempat_asteroid7_y2+gerak_benda
+kotak_ast7_3, kotak_ast7_4 = tempat_asteroid7_x1, tempat_asteroid7_x2
+# Batas Asteroid 8
+tempat_asteroid8_x1 = 700 # Kiri
+tempat_asteroid8_x2 = 850 # Kanan
+tempat_asteroid8_y1 = 605 # Atas
+tempat_asteroid8_y2 = 480 # Bawah
+kotak_ast8_1, kotak_ast8_2 = tempat_asteroid8_y1+gerak_benda, tempat_asteroid8_y2+gerak_benda 
+kotak_ast8_3, kotak_ast8_4 = tempat_asteroid8_x1, tempat_asteroid8_x2
+# Batas Serpihan 1 
+tempat_serpihan1_x1 = -440 # Kiri
+tempat_serpihan1_x2 = -150 # Kanan
+tempat_serpihan1_y1 = 605 # Atas
+tempat_serpihan1_y2 = 490 # Bawah
+kotak_ser1_1, kotak_ser1_2 = tempat_serpihan1_y1+gerak_benda, tempat_serpihan1_y2+gerak_benda 
+kotak_ser1_3, kotak_ser1_4 = tempat_serpihan1_x1, tempat_serpihan1_x2
+# Nyawa
+hidup = 3
 
 def init():
     glClearColor(bg_r1,bg_g1,bg_b1,0.8)
@@ -269,12 +319,19 @@ def animasi_turun():
     # data = [asteroid_1, asteroid_2,asteroid_3,asteroid_4,asteroid_5,asteroid_6,asteroid_7,asteroid_8,serpihan_1]
     # data = [asteroid_1(), asteroid_2(),asteroid_3(),asteroid_4(),asteroid_5(),asteroid_6(),asteroid_7(),asteroid_8(),serpihan_1()]
     # data = [asteroid_1(),asteroid_2(),asteroid_3()]
-    data = [asteroid_5()]
-    # rd.sample(data,k=2)
+    data = [asteroid_4()]
+    # benda = rd.choice(data)
+    # benda()
 
 def asteroid_1():
+    global pause
+    global tempat_asteroid1_x1, tempat_asteroid1_x2
+    global tempat_asteroid1_y1, tempat_asteroid1_y2
+    global kotak_ast1_1, kotak_ast1_2, kotak_ast1_3, kotak_ast1_4 
     global gerak_benda
 
+    kotak_ast1_1 = tempat_asteroid1_y1+gerak_benda
+    kotak_ast1_2 = tempat_asteroid1_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -310,9 +367,17 @@ def asteroid_1():
     glVertex2f(-1030,575+gerak_benda)
     glEnd()
 
+    tabrakan()
+
 def asteroid_2():
+    global pause
+    global tempat_asteroid2_x1,tempat_asteroid2_x2
+    global tempat_asteroid2_y1,tempat_asteroid2_y2
+    global kotak_ast2_1, kotak_ast2_2, kotak_ast2_3, kotak_ast2_4
     global gerak_benda
 
+    kotak_ast2_1 = tempat_asteroid2_y1+gerak_benda
+    kotak_ast2_2 = tempat_asteroid2_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -338,9 +403,17 @@ def asteroid_2():
     glVertex2f(1020,540+gerak_benda)
     glEnd()
 
+    tabrakan()
+
 def asteroid_3():
+    global pause
+    global tempat_asteroid3_x1, tempat_asteroid3_x2
+    global tempat_asteroid3_y1, tempat_asteroid3_y2
+    global kotak_ast3_1, kotak_ast3_2, kotak_ast3_3, kotak_ast3_4
     global gerak_benda
 
+    kotak_ast3_1 = tempat_asteroid3_y1+gerak_benda
+    kotak_ast3_2 = tempat_asteroid3_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -400,9 +473,17 @@ def asteroid_3():
     glVertex2f(-760,570+gerak_benda)
     glEnd()
 
-def asteroid_4():
-    global gerak_benda
+    tabrakan()
 
+def asteroid_4():
+    global pause
+    global tempat_asteroid4_x1, tempat_asteroid4_x2
+    global tempat_asteroid4_y1, tempat_asteroid4_y2
+    global kotak_ast4_1, kotak_ast4_2, kotak_ast4_3, kotak_ast4_4
+    global gerak_benda
+    
+    kotak_ast4_1 = tempat_asteroid4_y1+gerak_benda
+    kotak_ast4_2 = tempat_asteroid4_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -442,30 +523,18 @@ def asteroid_4():
     glVertex2f(-507,560+gerak_benda)
     glEnd()
 
+    tabrakan()
+
 def asteroid_5():
     global pause
-    global tempat_pesawat_x1, tempat_pesawat_x2
-    global tempat_pesawat_y1, tempat_pesawat_y2
     global tempat_asteroid5_x1, tempat_asteroid5_x2
     global tempat_asteroid5_y1, tempat_asteroid5_y2
-    global kotak_1, kotak_2, kotak_3, kotak_4
+    global kotak_ast5_1, kotak_ast5_2, kotak_ast5_3, kotak_ast5_4
     
-    kotak_1 = tempat_asteroid5_y1+gerak_benda
-    kotak_2 = tempat_asteroid5_y2+gerak_benda
+    kotak_ast5_1 = tempat_asteroid5_y1+gerak_benda
+    kotak_ast5_2 = tempat_asteroid5_y2+gerak_benda
     if pause != 1:
         efek_turun() 
-
-    glColor3f(255,255,255)
-    glBegin(GL_LINES)
-    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y1+gerak_benda)
-    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y2+gerak_benda)
-    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y2+gerak_benda)
-    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y2+gerak_benda)
-    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y2+gerak_benda)
-    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y1+gerak_benda)
-    glVertex2f(tempat_asteroid5_x2,tempat_asteroid5_y1+gerak_benda)
-    glVertex2f(tempat_asteroid5_x1,tempat_asteroid5_y1+gerak_benda)
-    glEnd()
 
     glColor3ub(243, 91, 4)
     glBegin(GL_POLYGON)
@@ -526,8 +595,14 @@ def asteroid_5():
     tabrakan()
 
 def asteroid_6():
+    global pause
+    global tempat_asteroid6_x1, tempat_asteroid6_x2
+    global tempat_asteroid6_y1, tempat_asteroid6_y2
+    global kotak_ast6_1, kotak_ast6_2, kotak_ast6_3, kotak_ast6_4
     global gerak_benda
 
+    kotak_ast6_1 = tempat_asteroid6_y1+gerak_benda
+    kotak_ast6_2 = tempat_asteroid6_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -573,10 +648,18 @@ def asteroid_6():
     glVertex2f(280,550+gerak_benda)
     glVertex2f(350,550+gerak_benda)
     glEnd()
+    
+    tabrakan()
 
 def asteroid_7():
+    global pause
+    global tempat_asteroid7_x1, tempat_asteroid7_x2
+    global tempat_asteroid7_y1, tempat_asteroid7_y2
+    global kotak_ast7_1, kotak_ast7_2, kotak_ast7_3, kotak_ast7_4
     global gerak_benda
 
+    kotak_ast7_1 = tempat_asteroid7_y1+gerak_benda
+    kotak_ast7_2 = tempat_asteroid7_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -616,9 +699,17 @@ def asteroid_7():
     glVertex2f(593,560+gerak_benda)
     glEnd()
     
+    tabrakan()
+
 def asteroid_8():
+    global pause
+    global tempat_asteroid8_x1, tempat_asteroid8_x2
+    global tempat_asteroid8_y1, tempat_asteroid8_y2
+    global kotak_ast8_1, kotak_ast8_2, kotak_ast8_3, kotak_ast8_4
     global gerak_benda
 
+    kotak_ast8_1 = tempat_asteroid8_y1+gerak_benda
+    kotak_ast8_2 = tempat_asteroid8_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -678,9 +769,17 @@ def asteroid_8():
     glVertex2f(840,570+gerak_benda)
     glEnd()
 
+    tabrakan()
+
 def serpihan_1():
+    global pause
+    global tempat_serpihan1_x1, tempat_serpihan1_x2
+    global tempat_serpihan1_y1, tempat_serpihan1_y2
+    global kotak_ser1_1, kotak_ser1_2, kotak_ser1_3, kotak_ser1_4
     global gerak_benda
 
+    kotak_ser1_1 = tempat_serpihan1_y1+gerak_benda
+    kotak_ser1_2 = tempat_serpihan1_y2+gerak_benda
     if pause != 1:
         efek_turun()
 
@@ -714,6 +813,8 @@ def serpihan_1():
     glVertex2f(-380,540+gerak_benda)
     glVertex2f(-200,585+gerak_benda)
     glEnd()
+
+    tabrakan()
 
 def pintu_keluar_awal():
     glColor3ub(255,255,255)
@@ -900,15 +1001,48 @@ def tabrakan():
     global kiri_1, kiri_2, kiri_3, kiri_4, kiri_5, kiri_6
            # 1300, 112, 202, -265, -365, -480
     global kanan_1, kanan_2, kanan_3, kanan_4, kanan_5, kanan_6
-    global gerak_benda, kotak_1, kotak_2, kotak_3, kotak_4
+    global gerak_benda
+    global kotak_ast1_1, kotak_ast1_2, kotak_ast1_3, kotak_ast1_4
+    global kotak_ast2_1, kotak_ast2_2, kotak_ast2_3, kotak_ast2_4
+    global kotak_ast3_1, kotak_ast3_2, kotak_ast3_3, kotak_ast3_4
+    global kotak_ast4_1, kotak_ast4_2, kotak_ast4_3, kotak_ast4_4
+    global kotak_ast5_1, kotak_ast5_2, kotak_ast5_3, kotak_ast5_4
+    global kotak_ast6_1, kotak_ast6_2, kotak_ast6_3, kotak_ast6_4
+    global kotak_ast7_1, kotak_ast7_2, kotak_ast7_3, kotak_ast7_4
+    global kotak_ast8_1, kotak_ast8_2, kotak_ast8_3, kotak_ast8_4
+    global kotak_ser1_1, kotak_ser1_2, kotak_ser1_3, kotak_ser1_4
     global posisi_x_pesawat, posisi_y_pesawat
+    global hidup
 
     # Area Bagian Pesawat
-    if (kiri_4 + posisi_y_pesawat > kotak_2 and kiri_6 + posisi_y_pesawat < kotak_2) and \
-        (kiri_3 + posisi_x_pesawat <= kotak_4 and kanan_3 + posisi_x_pesawat >= kotak_4):
-        # print(f"DAERAH SAYAP {kotak_2}")
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast1_2 and kiri_6 + posisi_y_pesawat < kotak_ast1_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast1_4 and kanan_3 + posisi_x_pesawat > kotak_ast1_3)):
         gerak_benda += 1
-
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast2_2 and kiri_6 + posisi_y_pesawat < kotak_ast2_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast2_4 and kanan_3 + posisi_x_pesawat > kotak_ast2_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast3_2 and kiri_6 + posisi_y_pesawat < kotak_ast3_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast3_4 and kanan_3 + posisi_x_pesawat > kotak_ast3_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast4_2 and kiri_6 + posisi_y_pesawat < kotak_ast4_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast4_4 and kanan_3 + posisi_x_pesawat > kotak_ast4_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast5_2 and kiri_6 + posisi_y_pesawat < kotak_ast5_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast5_4 and kanan_3 + posisi_x_pesawat > kotak_ast5_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast6_2 and kiri_6 + posisi_y_pesawat < kotak_ast6_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast6_4 and kanan_3 + posisi_x_pesawat > kotak_ast6_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast7_2 and kiri_6 + posisi_y_pesawat < kotak_ast7_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast7_4 and kanan_3 + posisi_x_pesawat > kotak_ast7_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ast8_2 and kiri_6 + posisi_y_pesawat < kotak_ast8_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ast8_4 and kanan_3 + posisi_x_pesawat > kotak_ast8_3)):
+        gerak_benda += 1
+    if ((kiri_4 + posisi_y_pesawat > kotak_ser1_2 and kiri_6 + posisi_y_pesawat < kotak_ser1_2) and \
+        (kiri_3 + posisi_x_pesawat < kotak_ser1_4 and kanan_3 + posisi_x_pesawat > kotak_ser1_3)):
+        gerak_benda += 1
+           
 def tanda_pause():
     glColor3ub(255,255,255)
     glBegin(GL_POLYGON)
@@ -1910,49 +2044,6 @@ def astro():
     glVertex2f(63,95)
     glEnd()
 
-def sayap():
-           # -999999, -110, -200, -265, -365, -480
-    global kiri_1, kiri_2, kiri_3, kiri_4, kiri_5, kiri_6
-           # 999999, 112, 202, -265, -365, -480
-    global kanan_1, kanan_2, kanan_3, kanan_4, kanan_5, kanan_6
-    global posisi_x_pesawat, posisi_y_pesawat
-
-    # Sisi Kiri 
-    glColor3ub(255,255,255)
-    glBegin(GL_LINES)
-    glVertex2f(kiri_3+posisi_x_pesawat,kiri_4+posisi_y_pesawat)
-    glVertex2f(kiri_3+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
-    glVertex2f(kiri_1+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
-    glVertex2f(kiri_1+posisi_x_pesawat,kiri_4+posisi_y_pesawat)
-    glEnd()
-
-    # Sisi Kanan 
-    glColor3ub(255,255,255)
-    glBegin(GL_LINES)
-    glVertex2f(kanan_3+posisi_x_pesawat,kanan_4+posisi_y_pesawat)
-    glVertex2f(kanan_3+posisi_x_pesawat,kanan_6+posisi_y_pesawat)
-    glVertex2f(kanan_1+posisi_x_pesawat, kanan_6+posisi_y_pesawat)
-    glVertex2f(kanan_1+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
-    glEnd()
-
-    # Sisi Atas
-    glColor3ub(255,255,255)
-    glBegin(GL_LINES)
-    glVertex2f(kiri_3+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
-    glVertex2f(kiri_3+posisi_x_pesawat, kanan_1+posisi_y_pesawat)
-    glVertex2f(kanan_3+posisi_x_pesawat, kanan_1+posisi_y_pesawat)
-    glVertex2f(kanan_3+posisi_x_pesawat, kanan_4+posisi_y_pesawat)
-    glEnd()
-
-    # Sisi Bawah
-    glColor3ub(255,255,255)
-    glBegin(GL_LINES)
-    glVertex2f(kiri_3+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
-    glVertex2f(kiri_3+posisi_x_pesawat,kiri_1+posisi_y_pesawat)
-    glVertex2f(abs(kiri_3)+posisi_x_pesawat,kiri_1+posisi_y_pesawat)
-    glVertex2f(abs(kiri_3)+posisi_x_pesawat,kiri_6+posisi_y_pesawat)
-    glEnd()
-
 def hati():
     glColor3ub(255, 10, 15)
     glBegin(GL_POLYGON)
@@ -1991,19 +2082,40 @@ def hati():
     glEnd()
 
 def nyawa():
-    glPushMatrix()
-    hati()
-    glPopMatrix()
+    global hidup
 
-    glPushMatrix()
-    glTranslated(-150,0,0)
-    hati()
-    glPopMatrix()
+    if hidup == 3:
+        glPushMatrix()
+        hati()
+        glPopMatrix()
 
-    glPushMatrix()
-    glTranslated(-300,0,0)
-    hati()
-    glPopMatrix()
+        glPushMatrix()
+        glTranslated(-150,0,0)
+        hati()
+        glPopMatrix()
+
+        glPushMatrix()
+        glTranslated(-300,0,0)
+        hati()
+        glPopMatrix()
+
+    if hidup == 2:
+        glPushMatrix()
+        hati()
+        glPopMatrix()
+
+        glPushMatrix()
+        glTranslated(-150,0,0)
+        hati()
+        glPopMatrix()
+
+    if hidup == 1:
+        glPushMatrix()
+        hati()
+        glPopMatrix()
+
+    if hidup == 0:
+        pausing()
 
 def layar():
     global pause
@@ -2119,18 +2231,10 @@ def layar():
     glPopMatrix()
     
     glPushMatrix()
-    sayap()
-    glPopMatrix()
-
-    glPushMatrix()
     nyawa()
     glPopMatrix()
-    
-    # glPushMatrix()
-    # sayap()
-    # glPopMatrix()
 
-    # animasi_turun()
+    animasi_turun()
 
     # glPushMatrix()
     # asteroid_1()
