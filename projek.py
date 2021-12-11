@@ -1017,38 +1017,56 @@ def tabrakan():
         (kiri_3 + posisi_x_pesawat < kotak_ast1_4 and kanan_3 + posisi_x_pesawat > kotak_ast1_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast2_2 and kiri_6 + posisi_y_pesawat < kotak_ast2_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast2_4 and kanan_3 + posisi_x_pesawat > kotak_ast2_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast3_2 and kiri_6 + posisi_y_pesawat < kotak_ast3_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast3_4 and kanan_3 + posisi_x_pesawat > kotak_ast3_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast4_2 and kiri_6 + posisi_y_pesawat < kotak_ast4_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast4_4 and kanan_3 + posisi_x_pesawat > kotak_ast4_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast5_2 and kiri_6 + posisi_y_pesawat < kotak_ast5_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast5_4 and kanan_3 + posisi_x_pesawat > kotak_ast5_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast6_2 and kiri_6 + posisi_y_pesawat < kotak_ast6_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast6_4 and kanan_3 + posisi_x_pesawat > kotak_ast6_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast7_2 and kiri_6 + posisi_y_pesawat < kotak_ast7_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast7_4 and kanan_3 + posisi_x_pesawat > kotak_ast7_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ast8_2 and kiri_6 + posisi_y_pesawat < kotak_ast8_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast8_4 and kanan_3 + posisi_x_pesawat > kotak_ast8_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
     if ((kiri_4 + posisi_y_pesawat > kotak_ser1_2 and kiri_6 + posisi_y_pesawat < kotak_ser1_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ser1_4 and kanan_3 + posisi_x_pesawat > kotak_ser1_3)):
         gerak_benda += 1
         hidup -= 1
+        posisi_x_pesawat = 0
+        posisi_y_pesawat = 0
 
 def tanda_pause():
     glColor3ub(255,255,255)
@@ -2162,28 +2180,12 @@ def hati3():
     glVertex2f((1200-300),-600)
     glEnd()
 
-def nyawa():
-    global hidup
-
-    glPushMatrix()
-    hati()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(-150,0,0)
-    hati()
-    glPopMatrix()
-
-    glPushMatrix()
-    glTranslated(-300,0,0)
-    hati()
-    glPopMatrix()
-
 def layar():
     global pause
     global mulai
     global tombol_mulai
     global tombol_awal_efek
+    global gerak_benda
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
