@@ -317,11 +317,9 @@ def efek_turun():
 
 def animasi_turun():
     # data = [asteroid_1, asteroid_2,asteroid_3,asteroid_4,asteroid_5,asteroid_6,asteroid_7,asteroid_8,serpihan_1]
-    # data = [asteroid_1(), asteroid_2(),asteroid_3(),asteroid_4(),asteroid_5(),asteroid_6(),asteroid_7(),asteroid_8(),serpihan_1()]
-    # data = [asteroid_1(),asteroid_2(),asteroid_3()]
-    data = [asteroid_4()]
-    # benda = rd.choice(data)
-    # benda()
+    data = [asteroid_4]
+    benda = rd.choice(data)
+    benda()
 
 def asteroid_1():
     global pause
@@ -1018,31 +1016,40 @@ def tabrakan():
     if ((kiri_4 + posisi_y_pesawat > kotak_ast1_2 and kiri_6 + posisi_y_pesawat < kotak_ast1_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast1_4 and kanan_3 + posisi_x_pesawat > kotak_ast1_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast2_2 and kiri_6 + posisi_y_pesawat < kotak_ast2_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast2_4 and kanan_3 + posisi_x_pesawat > kotak_ast2_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast3_2 and kiri_6 + posisi_y_pesawat < kotak_ast3_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast3_4 and kanan_3 + posisi_x_pesawat > kotak_ast3_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast4_2 and kiri_6 + posisi_y_pesawat < kotak_ast4_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast4_4 and kanan_3 + posisi_x_pesawat > kotak_ast4_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast5_2 and kiri_6 + posisi_y_pesawat < kotak_ast5_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast5_4 and kanan_3 + posisi_x_pesawat > kotak_ast5_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast6_2 and kiri_6 + posisi_y_pesawat < kotak_ast6_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast6_4 and kanan_3 + posisi_x_pesawat > kotak_ast6_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast7_2 and kiri_6 + posisi_y_pesawat < kotak_ast7_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast7_4 and kanan_3 + posisi_x_pesawat > kotak_ast7_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ast8_2 and kiri_6 + posisi_y_pesawat < kotak_ast8_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ast8_4 and kanan_3 + posisi_x_pesawat > kotak_ast8_3)):
         gerak_benda += 1
+        hidup -= 1
     if ((kiri_4 + posisi_y_pesawat > kotak_ser1_2 and kiri_6 + posisi_y_pesawat < kotak_ser1_2) and \
         (kiri_3 + posisi_x_pesawat < kotak_ser1_4 and kanan_3 + posisi_x_pesawat > kotak_ser1_3)):
         gerak_benda += 1
-           
+        hidup -= 1
+
 def tanda_pause():
     glColor3ub(255,255,255)
     glBegin(GL_POLYGON)
@@ -2044,7 +2051,7 @@ def astro():
     glVertex2f(63,95)
     glEnd()
 
-def hati():
+def hati1():
     glColor3ub(255, 10, 15)
     glBegin(GL_POLYGON)
     glVertex2f(1200,-528)
@@ -2081,41 +2088,96 @@ def hati():
     glVertex2f(1200,-600)
     glEnd()
 
+def hati2():
+    glColor3ub(255, 10, 15)
+    glBegin(GL_POLYGON)
+    glVertex2f((1200-150),-528)
+    glVertex2f((1197-150),-524)
+    glVertex2f((1190-150),-517)
+    glVertex2f((1182-150),-513)
+    glVertex2f((1177-150),-511)
+    glVertex2f((1168-150),-512)
+    glVertex2f((1160-150),-517)
+    glVertex2f((1155-150),-525)
+    glVertex2f((1152-150),-536)
+    glVertex2f((1152-150),-545)
+    glVertex2f((1155-150),-554)
+    glVertex2f((1160-150),-562)
+    glVertex2f((1170-150),-574)
+    glVertex2f((1200-150),-600)
+    glEnd()
+    glBegin(GL_POLYGON)
+    glVertex2f((1200-150),-528)
+    glVertex2f((1203-150),-524)
+    glVertex2f((1210-150),-517)
+    glVertex2f((1218-150),-513)
+    glColor3ub(255, 50, 55)
+    glVertex2f((1223-150),-511)
+    glVertex2f((1232-150),-512)
+    glVertex2f((1240-150),-517)
+    glVertex2f((1245-150),-525)
+    glVertex2f((1248-150),-536)
+    glVertex2f((1248-150),-545)
+    glVertex2f((1245-150),-554)
+    glColor3ub(255, 10, 15)
+    glVertex2f((1240-150),-562)
+    glVertex2f((1230-150),-574)
+    glVertex2f((1200-150),-600)
+    glEnd()
+
+def hati3():
+    glColor3ub(255, 10, 15)
+    glBegin(GL_POLYGON)
+    glVertex2f((1200-300),-528)
+    glVertex2f((1197-300),-524)
+    glVertex2f((1190-300),-517)
+    glVertex2f((1182-300),-513)
+    glVertex2f((1177-300),-511)
+    glVertex2f((1168-300),-512)
+    glVertex2f((1160-300),-517)
+    glVertex2f((1155-300),-525)
+    glVertex2f((1152-300),-536)
+    glVertex2f((1152-300),-545)
+    glVertex2f((1155-300),-554)
+    glVertex2f((1160-300),-562)
+    glVertex2f((1170-300),-574)
+    glVertex2f((1200-300),-600)
+    glEnd()
+    glBegin(GL_POLYGON)
+    glVertex2f((1200-300),-528)
+    glVertex2f((1203-300),-524)
+    glVertex2f((1210-300),-517)
+    glVertex2f((1218-300),-513)
+    glColor3ub(255, 50, 55)
+    glVertex2f((1223-300),-511)
+    glVertex2f((1232-300),-512)
+    glVertex2f((1240-300),-517)
+    glVertex2f((1245-300),-525)
+    glVertex2f((1248-300),-536)
+    glVertex2f((1248-300),-545)
+    glVertex2f((1245-300),-554)
+    glColor3ub(255, 10, 15)
+    glVertex2f((1240-300),-562)
+    glVertex2f((1230-300),-574)
+    glVertex2f((1200-300),-600)
+    glEnd()
+
 def nyawa():
     global hidup
 
-    if hidup == 3:
-        glPushMatrix()
-        hati()
-        glPopMatrix()
+    glPushMatrix()
+    hati()
+    glPopMatrix()
 
-        glPushMatrix()
-        glTranslated(-150,0,0)
-        hati()
-        glPopMatrix()
+    glPushMatrix()
+    glTranslated(-150,0,0)
+    hati()
+    glPopMatrix()
 
-        glPushMatrix()
-        glTranslated(-300,0,0)
-        hati()
-        glPopMatrix()
-
-    if hidup == 2:
-        glPushMatrix()
-        hati()
-        glPopMatrix()
-
-        glPushMatrix()
-        glTranslated(-150,0,0)
-        hati()
-        glPopMatrix()
-
-    if hidup == 1:
-        glPushMatrix()
-        hati()
-        glPopMatrix()
-
-    if hidup == 0:
-        pausing()
+    glPushMatrix()
+    glTranslated(-300,0,0)
+    hati()
+    glPopMatrix()
 
 def layar():
     global pause
@@ -2230,9 +2292,32 @@ def layar():
     tanda_pause()
     glPopMatrix()
     
-    glPushMatrix()
-    nyawa()
-    glPopMatrix()
+    if hidup == 3:
+        glPushMatrix()
+        hati1()
+        glPopMatrix()
+
+        glPushMatrix()
+        hati2()
+        glPopMatrix()
+
+        glPushMatrix()
+        hati3()
+        glPopMatrix()
+    if hidup == 2:
+        glPushMatrix()
+        hati1()
+        glPopMatrix()
+
+        glPushMatrix()
+        hati2()
+        glPopMatrix()
+    if hidup == 1:
+        glPushMatrix()
+        hati1()
+        glPopMatrix()
+    if hidup == 0:
+        gerak_benda = 0
 
     animasi_turun()
 
